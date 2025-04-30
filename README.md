@@ -1,4 +1,5 @@
 # 一个可被uptime监控的jav tg bot，包含Hello world!静态网页
+docker镜像：`mikehand888/jav-telegram-bot:latest`
 ## 环境变量
   | 变量名       | 变量内容  |默认值|说明|
   | ------------ | ------   |-----|---|
