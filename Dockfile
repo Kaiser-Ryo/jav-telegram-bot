@@ -1,7 +1,5 @@
-# 使用官方Python轻量级镜像
 FROM python:3.11-slim-bookworm
 
-# 设置工作目录
 WORKDIR /app
 
 # 安装系统依赖
@@ -12,20 +10,17 @@ RUN apt-get update && apt-get install -y \
     libxslt1-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# 复制依赖清单
 COPY requirements.txt .
 
 # 安装Python依赖
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# 复制所有文件
+# 复制所有文件（自动排除 .dockerignore 中的内容）
 COPY . .
 
-# 设置环境变量默认值
-ENV CLEAN_INTERVAL_MINUTES=60 \
-    SIZE_THRESHOLD=100 \
-    WEB_PORT=8080
+# 暴露网页端口
+EXPOSE 8080
 
-# 启动命令（同时运行Telegram Bot和网页服务）
-CMD ["sh", "-c", "python -m http.server ${WEB_PORT} & python tgbot.py"]
+# 同时运行网页服务和机器人
+CMD ["sh", "-c", "python -m http.server 8080 & python tgbot.py"]
