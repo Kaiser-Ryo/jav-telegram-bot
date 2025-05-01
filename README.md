@@ -1,4 +1,4 @@
-# 一个可被uptime监控的jav tg bot，包含Hello world!静态网页
+# 一个可被uptime监控的jav tg bot，可以通过raw文件链接自定义静态网页，默认静态网页为Hello world!
 docker镜像：`mikehand888/jav-telegram-bot:latest`
 ## 环境变量
   | 变量名       | 变量内容  |默认值|说明|
@@ -17,3 +17,4 @@ docker镜像：`mikehand888/jav-telegram-bot:latest`
   |CLEAN_BATCH_SIZE||500|
   |CLEAN_REQUEST_INTERVAL||0.2|
   |MAX_CONCURRENT_REQUESTS||20|
+  |HTML_URL|内容为自定义静态网页的raw文件链接，不填静态网页为Hello world!|
