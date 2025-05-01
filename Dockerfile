@@ -20,7 +20,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
 COPY . .
 
 # 暴露网页端口
-EXPOSE 8080 8081
+EXPOSE 80
 
 # 同时运行网页服务和机器人
-CMD ["sh", "-c", "python -m http.server 8080 & python tgbot.py --port 8081"]
+CMD ["sh", "-c", "python -m http.server 80 & python tgbot.py"]
