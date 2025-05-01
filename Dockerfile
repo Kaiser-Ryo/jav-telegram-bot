@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     python3-dev \
     libxml2-dev \
     libxslt1-dev \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
@@ -18,9 +19,10 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 # 复制所有文件（自动排除 .dockerignore 中的内容）
 COPY . .
+RUN chmod +x start.sh
 
 # 暴露网页端口
-EXPOSE 80
+EXPOSE 8080
 
 # 同时运行网页服务和机器人
-CMD ["sh", "-c", "python -m http.server 80 & python tgbot.py"]
+CMD ["./start.sh"]
